@@ -5,8 +5,6 @@ import { appRouter, createTRPCContext } from "@happening/api";
 
 import { createClient } from "~/utils/supabase/server";
 
-export const runtime = "edge";
-
 /**
  * Configure basic CORS headers
  * You should extend this to match your needs
