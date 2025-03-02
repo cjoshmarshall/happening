@@ -1,5 +1,3 @@
-import { scale } from "react-native-size-matters";
-
 export const COLORS = {
   background: "#FFFFFF",
   foreground: "#000000",
