@@ -14,6 +14,8 @@ import { TRPCProvider } from "~/utils/api";
 
 import "../styles.css";
 
+// import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+
 export default function RootLayout() {
   useFonts({
     Poppins_400Regular,
@@ -24,12 +26,14 @@ export default function RootLayout() {
 
   return (
     <TRPCProvider>
+      {/* <BottomSheetModalProvider> */}
       <Stack>
         <Stack.Screen name="auth" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="shows" options={{ headerShown: false }} />
       </Stack>
       <StatusBar />
+      {/* </BottomSheetModalProvider> */}
     </TRPCProvider>
   );
 }

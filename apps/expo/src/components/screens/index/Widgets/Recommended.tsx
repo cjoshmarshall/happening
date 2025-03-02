@@ -1,18 +1,9 @@
-import {
-  FlatList,
-  Image,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { scale } from "react-native-size-matters";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import ArrahmanLiveConcert from "assets/images/arrahman-live-concert.png";
 import Cricket from "assets/images/cricket-live.png";
 import ZahirKhanLive from "assets/images/zahir-khan-live.png";
-
-import { COLORS } from "~/utils/constants";
 
 export default function Recommended() {
   const pouplarShows = [
@@ -50,7 +41,7 @@ export default function Recommended() {
               borderRadius: scale(8),
               overflow: "hidden",
             }}
-            onPress={() => router.push(`/home/shows/${item.id}`)}
+            onPress={() => router.push(`/shows/${item.id}`)}
           >
             <Image
               source={item.image}

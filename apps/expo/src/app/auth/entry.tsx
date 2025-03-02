@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { scale } from "react-native-size-matters";
 import { Link } from "expo-router";
 
-import Button from "~/component/Button";
+import Button from "~/components/widgets/Button";
 
 export default function Entry() {
   const { height } = useWindowDimensions();

@@ -8,7 +8,7 @@ import GoldTicketIcon from "assets/icons/gold-ticket.svg";
 import PlatinumTicketIcon from "assets/icons/platinum-ticket.svg";
 import SilverTicketIcon from "assets/icons/silver-ticket.svg";
 
-import Button from "~/component/Button";
+import Button from "~/components/widgets/Button";
 import { capitalizeFirstLetter, COLORS, TAB_HEIGHT } from "~/utils/constants";
 
 export default function SelectSeats() {

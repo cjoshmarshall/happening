@@ -1,5 +1,8 @@
 import type { ImageSourcePropType } from "react-native";
+import { useState } from "react";
 import {
+  ActivityIndicator,
+  Alert,
   Image,
   Text,
   TextInput,
@@ -10,12 +13,35 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { scale } from "react-native-size-matters";
 import { router } from "expo-router";
 
-import Button from "~/component/Button";
+import Button from "~/components/widgets/Button";
+import { COLORS } from "~/utils/constants";
+import { supabase } from "~/utils/supabase";
 import MainLogo from "../../../assets/logos/main.png";
 import SocialMediaLogos from "../../../assets/logos/social-media.png";
 
 export default function Auth() {
   const { height } = useWindowDimensions();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) {
+      setIsLoading(false);
+      Alert.alert("", error.message);
+    }
+    if (data.user) {
+      setIsLoading(false);
+      router.replace("/");
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, marginHorizontal: scale(38), height }}>
@@ -61,9 +87,11 @@ export default function Auth() {
               lineHeight: scale(20),
             }}
             placeholderTextColor="#A3A3A3"
+            keyboardType="email-address"
+            onChangeText={setEmail}
           />
           <TextInput
-            placeholder="Enter OTP"
+            placeholder="Enter Password"
             style={{
               height: scale(38),
               width: "100%",
@@ -76,14 +104,33 @@ export default function Auth() {
               fontSize: scale(12),
               lineHeight: scale(20),
             }}
+            secureTextEntry
             placeholderTextColor="#A3A3A3"
+            keyboardType="default"
+            onChangeText={setPassword}
           />
           <Button
             style={{ height: scale(38), width: "100%" }}
-            onPress={() => router.push("/")}
+            onPress={handleLogin}
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? (
+              <ActivityIndicator size="small" color={COLORS.background} />
+            ) : (
+              "Login"
+            )}
           </Button>
+          <Text
+            style={{
+              fontFamily: "Poppins_400Regular",
+              fontSize: scale(14),
+              lineHeight: scale(20),
+              textAlign: "right",
+              color: COLORS.primary,
+            }}
+          >
+            Send OTP
+          </Text>
         </View>
         <View
           style={{

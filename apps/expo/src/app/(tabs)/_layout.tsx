@@ -1,5 +1,6 @@
 import type { Session } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import { Image } from "react-native";
 import { scale } from "react-native-size-matters";
 import { router, Tabs } from "expo-router";
 import AccountActiveIcon from "assets/icons/account-active.svg";
@@ -13,22 +14,23 @@ import SearchActiveIcon from "assets/icons/search-active.svg";
 import SearchIcon from "assets/icons/search.svg";
 import WishlistActiveIcon from "assets/icons/wishlist-active.svg";
 import WishlistIcon from "assets/icons/wishlist.svg";
+import MainHeaderLogo from "assets/logos/main-header.png";
 
 import { COLORS, TAB_HEIGHT } from "~/utils/constants";
 import { supabase } from "~/utils/supabase";
 
 export default function TabsLayout() {
-  // const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
 
-  // useEffect(() => {
-  //   void supabase.auth.onAuthStateChange((_, session) => {
-  //     if (!session) {
-  //       router.replace("/auth/entry");
-  //     } else setSession(session);
-  //   });
-  // }, []);
+  useEffect(() => {
+    void supabase.auth.onAuthStateChange((_, session) => {
+      if (!session) {
+        router.replace("/auth/entry");
+      } else setSession(session);
+    });
+  }, []);
 
-  // if (!session) return null;
+  if (!session) return null;
 
   return (
     <Tabs
@@ -54,12 +56,13 @@ export default function TabsLayout() {
       sceneContainerStyle={{ backgroundColor: COLORS.background }}
     >
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ focused }: { focused: boolean }) =>
             focused ? <HomeActiveIcon /> : <HomeIcon />,
-          headerShown: false,
+          headerTitle: () => <Image source={MainHeaderLogo} />,
+          headerTitleAlign: "center",
         }}
       />
       <Tabs.Screen
@@ -98,7 +101,6 @@ export default function TabsLayout() {
             focused ? <AccountActiveIcon /> : <AccountIcon />,
         }}
       />
-      <Tabs.Screen name="index" options={{ href: null, headerShown: false }} />
     </Tabs>
   );
 }

@@ -4,8 +4,6 @@ import XCircleIcon from "assets/icons/x-circle.svg";
 import DanceLikeAManImage from "assets/images/dance-like-a-man.png";
 import JokesBunkerImage from "assets/images/jokes-bunker.png";
 
-import { COLORS } from "~/utils/constants";
-
 export default function ResumeBooking() {
   const shows = [
     { id: 1, image: JokesBunkerImage },
