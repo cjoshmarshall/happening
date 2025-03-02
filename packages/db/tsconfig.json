@@ -1,0 +1,11 @@
+{
+  "extends": "@happening/tsconfig/internal-package.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+  },
+  "include": ["src", "./seed.ts"],
+  "exclude": ["node_modules"]
+}

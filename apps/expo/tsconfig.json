@@ -1,0 +1,16 @@
+{
+  "extends": ["@happening/tsconfig/base.json"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@t3-oss/env-core": ["./node_modules/@t3-oss/env-core/dist/index.d.ts"]
+    },
+    "jsx": "react-native",
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "checkJs": false
+  },
+  "include": ["src", "*.ts", "*.js", ".expo/types/**/*.ts", "expo-env.d.ts"],
+  "exclude": ["node_modules", "android", "ios"]
+}
