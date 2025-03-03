@@ -59,9 +59,7 @@ const LocationModal = forwardRef<BottomSheetModal>((_, ref) => {
         >
           Current Location
         </Text>
-        <Pressable onPress={onPress}>
-          <Location />
-        </Pressable>
+        <Location />
         <Text
           style={{
             marginVertical: scale(22),
@@ -73,12 +71,19 @@ const LocationModal = forwardRef<BottomSheetModal>((_, ref) => {
         >
           Recent Locations
         </Text>
-        <Pressable onPress={onPress}>
-          <Location />
-        </Pressable>
-        <Pressable onPress={onPress}>
-          <Location />
-        </Pressable>
+        <Location />
+        <Location />
+        <Button
+          style={{ height: scale(32) }}
+          textStyle={{
+            fontFamily: "Poppins_400Regular",
+            paddingHorizontal: 16,
+            fontSize: scale(13),
+          }}
+          onPress={onPress}
+        >
+          Confirm
+        </Button>
       </BottomSheetView>
     </BottomSheetModal>
   );
