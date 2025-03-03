@@ -11,36 +11,31 @@ import SilverTicketIcon from "assets/icons/silver-ticket.svg";
 import Button from "~/components/widgets/Button";
 import { capitalizeFirstLetter, COLORS, TAB_HEIGHT } from "~/utils/constants";
 
+type Class = "platinum" | "gold" | "silver";
+
 export default function SelectSeats() {
   const { id } = useLocalSearchParams();
-
-  const ticketsAvailable = {
-    platinum: 8,
-    gold: 5,
-    silver: 3,
-  };
-
   const seats = [
     {
       id: 1,
       name: "platinum",
       icon: <PlatinumTicketIcon />,
       price: 1480,
-      ticketsAvailable: 8,
+      noOfSeatsAvailable: 8,
     },
     {
       id: 2,
       name: "gold",
       icon: <GoldTicketIcon />,
       price: 800,
-      ticketsAvailable: 5,
+      noOfSeatsAvailable: 5,
     },
     {
       id: 3,
       name: "silver",
       icon: <SilverTicketIcon />,
       price: 400,
-      ticketsAvailable: 3,
+      noOfSeatsAvailable: 3,
     },
   ];
 
@@ -51,8 +46,7 @@ export default function SelectSeats() {
   });
 
   const totalPrice = seats.reduce(
-    (sum, { name, price }) =>
-      sum + ticketCount[name as keyof typeof ticketsAvailable] * price,
+    (sum, { name, price }) => sum + ticketCount[name as Class] * price,
     0,
   );
 
@@ -160,7 +154,7 @@ export default function SelectSeats() {
         </Text>
       </View>
       {seats.map((item) => {
-        const nameKey = item.name as keyof typeof ticketsAvailable;
+        const nameKey = item.name as Class;
         return (
           <View
             key={item.id}
@@ -205,7 +199,7 @@ export default function SelectSeats() {
                   color: "#FF935B",
                 }}
               >
-                {ticketsAvailable[nameKey]} seats left
+                {item.noOfSeatsAvailable} seats left
               </Text>
             </View>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -253,9 +247,9 @@ export default function SelectSeats() {
                   alignItems: "center",
                   justifyContent: "center",
                   opacity:
-                    ticketCount[nameKey] >= ticketsAvailable[nameKey] ? 0.2 : 1,
+                    ticketCount[nameKey] >= item.noOfSeatsAvailable ? 0.2 : 1,
                 }}
-                disabled={ticketCount[nameKey] >= ticketsAvailable[nameKey]}
+                disabled={ticketCount[nameKey] >= item.noOfSeatsAvailable}
                 hitSlop={8}
                 onPress={() =>
                   setTicketCount((prev) => ({
@@ -327,7 +321,7 @@ export default function SelectSeats() {
         </View>
         <Link href={`/shows/${id?.toString()}/end`} asChild>
           <Button
-            style={{ height: scale(26) }}
+            style={{ height: scale(32) }}
             textStyle={{
               paddingHorizontal: 16,
               fontSize: scale(13),
