@@ -110,7 +110,7 @@ export default function Auth() {
             onChangeText={setPassword}
           />
           <Button
-            style={{ height: scale(38), width: "100%" }}
+            style={{ width: "100%" }}
             onPress={handleLogin}
             disabled={isLoading}
           >

@@ -7,6 +7,7 @@ import Button from "~/components/widgets/Button";
 
 export default function Entry() {
   const { height } = useWindowDimensions();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
@@ -86,9 +87,7 @@ export default function Entry() {
           </View>
         </View>
         <Link href="/auth" asChild>
-          <Button style={{ height: scale(28), width: scale(154) }}>
-            Go to prototype
-          </Button>
+          <Button style={{ width: scale(154) }}>Go to prototype</Button>
         </Link>
       </View>
     </SafeAreaView>
