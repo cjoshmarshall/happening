@@ -1,8 +1,9 @@
 import { forwardRef, useMemo } from "react";
-import { Pressable, Switch, Text, View } from "react-native";
+import { Switch, Text, View } from "react-native";
 import { scale } from "react-native-size-matters";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 
+import Button from "~/components/widgets/Button";
 import { COLORS } from "~/utils/constants";
 import Location from "../Widgets/Location";
 
