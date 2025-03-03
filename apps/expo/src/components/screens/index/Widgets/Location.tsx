@@ -1,32 +1,19 @@
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useRef } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { scale } from "react-native-size-matters";
 import LocationIcon from "assets/icons/location.svg";
 
 import { COLORS } from "~/utils/constants";
 
-// import LocationModal from "../Modals/Location";
-
 export default function Location() {
-  const bottomSheetRef = useRef<BottomSheetModal>(null);
-
-  const press = () => bottomSheetRef.current?.expand();
-
-  console.log("hello");
-  console.log(bottomSheetRef.current, " bottomSheetRef.current");
-
   return (
     <>
-      <Pressable
+      <View
         style={{
-          marginHorizontal: scale(20),
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: "#F9F5FD",
           borderRadius: scale(6),
         }}
-        onPress={press}
       >
         <View style={{ marginHorizontal: scale(8) }}>
           <LocationIcon />
@@ -56,8 +43,7 @@ export default function Location() {
             #2 KR Layout, Indiranagar
           </Text>
         </View>
-      </Pressable>
-      {/* <LocationModal ref={bottomSheetRef} /> */}
+      </View>
     </>
   );
 }

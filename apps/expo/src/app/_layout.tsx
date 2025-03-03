@@ -14,7 +14,8 @@ import { TRPCProvider } from "~/utils/api";
 
 import "../styles.css";
 
-// import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 export default function RootLayout() {
   useFonts({
@@ -26,14 +27,16 @@ export default function RootLayout() {
 
   return (
     <TRPCProvider>
-      {/* <BottomSheetModalProvider> */}
-      <Stack>
-        <Stack.Screen name="auth" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="shows" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar />
-      {/* </BottomSheetModalProvider> */}
+      <BottomSheetModalProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack>
+            <Stack.Screen name="auth" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="shows" options={{ headerShown: false }} />
+          </Stack>
+          <StatusBar />
+        </GestureHandlerRootView>
+      </BottomSheetModalProvider>
     </TRPCProvider>
   );
 }

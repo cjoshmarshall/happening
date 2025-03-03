@@ -1,4 +1,6 @@
-import { ScrollView } from "react-native";
+import type { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useRef } from "react";
+import { Pressable, ScrollView } from "react-native";
 import { scale } from "react-native-size-matters";
 
 import LocationModal from "~/components/screens/index/Modals/Location";
@@ -13,11 +15,17 @@ import Tabs from "~/components/screens/index/Widgets/Tabs";
 import { TAB_HEIGHT } from "~/utils/constants";
 
 export default function Home() {
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
+
+  const onPress = () => bottomSheetRef.current?.expand();
+
   return (
     <ScrollView
       contentContainerStyle={{ paddingBottom: scale(TAB_HEIGHT + 8) }}
     >
-      <Location />
+      <Pressable style={{ marginHorizontal: scale(20) }} onPress={onPress}>
+        <Location />
+      </Pressable>
       <Tabs />
       <Categories />
       <MostPopular />
@@ -25,7 +33,7 @@ export default function Home() {
       <Recommended />
       <Offers />
       <SeasonalEvents />
-      <LocationModal />
+      <LocationModal ref={bottomSheetRef} />
     </ScrollView>
   );
 }
