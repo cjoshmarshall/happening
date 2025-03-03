@@ -41,15 +41,12 @@ export default function Show() {
       { id: 1, name: "Hindi" },
       { id: 2, name: "Tamil" },
     ],
-    locations: [
+    venues: [
       {
         id: 1,
         name: "North Avenue Ground",
         city: "Bangalore",
-        slots: [
-          { id: 1, time: "7:00 pm" },
-          { id: 2, time: "10:00 pm" },
-        ],
+        slots: [{ id: 1, time: "11:00 am" }],
         eventClasses: [
           { id: 1, name: "platinum", noOfSeats: 8, price: 1480 },
           { id: 2, name: "gold", noOfSeats: 5, price: 800 },
@@ -58,16 +55,13 @@ export default function Show() {
       },
       {
         id: 2,
-        name: "North Avenue Ground",
+        name: "Phoenix Mall",
         city: "Bangalore",
-        slots: [
-          { id: 1, time: "7:00 pm" },
-          { id: 2, time: "10:00 pm" },
-        ],
+        slots: [{ id: 2, time: "5:00 pm" }],
         eventClasses: [
-          { id: 1, name: "platinum", noOfSeats: 8, price: 1480 },
-          { id: 2, name: "gold", noOfSeats: 5, price: 800 },
-          { id: 3, name: "silver", noOfSeats: 3, price: 480 },
+          { id: 1, name: "platinum", noOfSeats: 10, price: 1480 },
+          { id: 2, name: "gold", noOfSeats: 10, price: 800 },
+          { id: 3, name: "silver", noOfSeats: 10, price: 480 },
         ],
       },
     ],
@@ -270,12 +264,12 @@ export default function Show() {
                 color: "#3C3C3C",
               }}
             >
-              ₹{event.locations[0]?.eventClasses.at(-1)?.price} - ₹
-              {event.locations[0]?.eventClasses[0]?.price}
+              ₹{event.venues[0]?.eventClasses.at(-1)?.price} - ₹
+              {event.venues[0]?.eventClasses[0]?.price}
             </Text>
           </Text>
         </View>
-        {event.locations.map((location, index) => (
+        {event.venues.map((location, index) => (
           <View
             key={location.id}
             style={{
@@ -609,7 +603,7 @@ export default function Show() {
         </Text>
         <Link href={`/shows/${id?.toString()}/select-seats`} asChild>
           <Button
-            style={{ height: scale(26) }}
+            style={{ height: scale(32) }}
             textStyle={{
               paddingHorizontal: 16,
               fontSize: scale(13),
